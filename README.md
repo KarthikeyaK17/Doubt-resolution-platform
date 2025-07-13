@@ -26,10 +26,10 @@ Frontend: React.js, SCSS Modules, Framer Motion, AOS
 
 Backend: Node.js, Express.js
 
-Database: MongoDB Atlas
+Database: MongoDB
 
 Real-time Communication: Socket.IO
 
-Media Handling: Multer, Web Speech API, Tesseract.js
+Media Handling: Multer, Web Speech API
 
 Authentication: express-session (session-based)
