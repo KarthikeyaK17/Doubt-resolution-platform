@@ -1,0 +1,328 @@
+// Doubt Details - Premium SCSS
+// ==========================
+
+// Variables
+// --------
+$gold-primary: #d4af37;
+$gold-light: #f9e090;
+$gold-dark: #a67c00;
+$gold-tint: #f4e5c2;
+
+$bg-dark: #121212;
+$bg-darker: #0a0a0a;
+$text-primary: #f5f5dc;
+$text-secondary: #e0e0e0;
+
+$border-radius: 12px;
+$transition-base: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+// Mixins
+// ------
+@mixin gold-gradient($direction: to right) {
+  background: linear-gradient($direction, $gold-primary, $gold-light);
+}
+
+@mixin subtle-glow($color: $gold-primary, $intensity: 0.3) {
+  box-shadow: 0 0 15px rgba($color, $intensity);
+}
+
+@mixin card-effect {
+  background: rgba($bg-darker, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($gold-primary, 0.2);
+  border-radius: $border-radius;
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: rgba($gold-primary, 0.4);
+    @include subtle-glow($gold-primary, 0.5);
+  }
+}
+
+// Base Styles
+// -----------
+.detailsContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  @include card-effect;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 20% 50%,
+      rgba($gold-primary, 0.05) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// Typography
+// ----------
+.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $gold-primary;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba($gold-primary, 0.3);
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    @include gold-gradient;
+    margin: 1rem auto 0;
+    border-radius: 3px;
+  }
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: $text-secondary;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+// Media Elements
+// --------------
+.image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: $border-radius;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba($gold-primary, 0.1);
+  @include subtle-glow;
+  transition: all $transition-base;
+  
+  &:hover {
+    border-color: rgba($gold-primary, 0.3);
+    @include subtle-glow($gold-primary, 0.5);
+  }
+}
+
+.audio, .video {
+  width: 100%;
+  border-radius: $border-radius;
+  margin-bottom: 1.5rem;
+  @include subtle-glow($gold-dark, 0.2);
+  
+  &:focus {
+    outline: 2px solid $gold-primary;
+  }
+}
+
+// Info Sections
+// -------------
+.extra {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: rgba($text-secondary, 0.8);
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  
+  strong {
+    color: $gold-light;
+    font-weight: 600;
+  }
+}
+
+// Upvote Section
+// --------------
+.upvoteContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.upvoteButton {
+  @include gold-gradient;
+  color: $bg-darker;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+  @include subtle-glow;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(white, 0.2),
+      transparent
+    );
+    transition: all 0.6s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    @include subtle-glow($gold-primary, 0.6);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.upvoteCount {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $gold-primary;
+  text-shadow: 0 0 8px rgba($gold-primary, 0.3);
+}
+
+// Teacher Response
+// ----------------
+.teacherResponse {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($gold-primary, 0.2);
+  
+  h3 {
+    font-size: 1.5rem;
+    color: $gold-primary;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 2px;
+      @include gold-gradient;
+      margin: 0.8rem auto 0;
+    }
+  }
+}
+
+.teacherInfo {
+  font-size: 0.9rem;
+  color: rgba($text-secondary, 0.7);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  
+  strong {
+    color: $gold-light;
+  }
+}
+
+.responseBlock {
+  @include card-effect;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  
+  h4 {
+    font-size: 1.1rem;
+    color: $gold-light;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  @include gold-gradient;
+  color: $bg-darker;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: all $transition-base;
+  @include subtle-glow($gold-primary, 0.2);
+  
+  &:hover {
+    transform: translateY(-2px);
+    @include subtle-glow($gold-primary, 0.5);
+  }
+}
+
+.emailBox {
+  background: rgba($bg-dark, 0.5);
+  border-left: 4px solid $gold-primary;
+  padding: 1.25rem;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin-top: 1rem;
+}
+
+.noResponse {
+  font-style: italic;
+  color: rgba($text-secondary, 0.6);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+// Utility Classes
+// ---------------
+.spinner, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.spinner {
+  color: $gold-primary;
+}
+
+.error {
+  color: #ff6b6b;
+}
+
+// Responsive Adjustments
+// ----------------------
+@media (max-width: 768px) {
+  .detailsContainer {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .extra {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

@@ -1,0 +1,310 @@
+// Class Doubt Dashboard - Premium SCSS
+// ==================================
+
+// Variables
+// --------
+$gold-primary: #d4af37;
+$gold-light: #f9e090;
+$gold-dark: #a67c00;
+$gold-tint: #f4e5c2;
+
+$bg-dark: #121212;
+$bg-darker: #0a0a0a;
+$text-primary: #f5f5dc;
+$text-secondary: #e0e0e0;
+
+$border-radius: 8px;
+$transition-base: 0.25s ease-in-out;
+
+// Mixins
+// ------
+@mixin gold-gradient($direction: to right) {
+  background: linear-gradient($direction, $gold-primary, $gold-light);
+}
+
+@mixin subtle-glow($color: $gold-primary) {
+  box-shadow: 0 0 15px rgba($color, 0.3);
+}
+
+@mixin metallic-shine {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(white, 0) 0%,
+      rgba(white, 0.15) 50%,
+      rgba(white, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: all $transition-base;
+  }
+  
+  &:hover::after {
+    left: 120%;
+  }
+}
+
+// Base Styles
+// -----------
+.dashboard {
+  background: linear-gradient(135deg, $bg-dark 0%, $bg-darker 100%);
+  padding: 2rem;
+  color: $text-primary;
+  font-family: 'Sora', sans-serif;
+  min-height: 100vh;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      ellipse at center,
+      rgba($gold-primary, 0.05) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+// Typography
+// ----------
+.heading {
+  font-size: 2rem;
+  font-weight: 600;
+  color: $gold-primary;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    @include gold-gradient;
+    margin: 1rem auto 0;
+    border-radius: 3px;
+  }
+}
+
+// Components
+// ----------
+.doubtList {
+  list-style: none;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.doubtItem {
+  background: rgba(black, 0.3);
+  border: 1px solid rgba($gold-primary, 0.2);
+  border-radius: $border-radius;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  backdrop-filter: blur(5px);
+  transition: all $transition-base;
+  position: relative;
+  overflow: hidden;
+  
+  @include subtle-glow;
+  @include metallic-shine;
+  
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba($gold-primary, 0.4);
+    @include subtle-glow(rgba($gold-primary, 0.5));
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+    color: $gold-light;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: $gold-primary;
+      transition: width $transition-base;
+    }
+  }
+  
+  &:hover h4::after {
+    width: 50px;
+  }
+  
+  p {
+    margin: 0.5rem 0;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+  
+  img {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 1rem;
+    border-radius: $border-radius;
+    border: 1px solid rgba($gold-primary, 0.1);
+    transition: all $transition-base;
+    
+    &:hover {
+      border-color: rgba($gold-primary, 0.3);
+    }
+  }
+  
+  audio {
+    margin-top: 1rem;
+    width: 100%;
+    filter: drop-shadow(0 2px 4px rgba(black, 0.2));
+  }
+}
+
+.upvote {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  
+  button {
+    @include gold-gradient;
+    color: $bg-darker;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all $transition-base;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(white, 0.2),
+        transparent
+      );
+      transition: all 0.6s ease;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      @include subtle-glow;
+      
+      &::before {
+        left: 100%;
+      }
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.emptyState {
+  text-align: center;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 1;
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: rgba($text-secondary, 0.8);
+    line-height: 1.6;
+  }
+  
+  .uploadBtn {
+    @include gold-gradient;
+    border: none;
+    color: $bg-darker;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all $transition-base;
+    position: relative;
+    overflow: hidden;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(white, 0.2),
+        transparent
+      );
+      transition: all 0.6s ease;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      @include subtle-glow;
+      
+      &::after {
+        left: 100%;
+      }
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// Animations
+// ----------
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 0 0 rgba($gold-primary, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba($gold-primary, 0); }
+  100% { box-shadow: 0 0 0 0 rgba($gold-primary, 0); }
+}
+
+.pulse {
+  animation: goldPulse 2s infinite;
+  border-radius: $border-radius;
+}
+
+// Utility Classes
+// ---------------
+.z-1 { z-index: 1 }
+.z-2 { z-index: 2 }
+.z-3 { z-index: 3 }
+
+.text-gold { color: $gold-primary }
+.text-gold-light { color: $gold-light }
+.text-gold-dark { color: $gold-dark }
+
+.bg-gold-tint { background-color: $gold-tint }

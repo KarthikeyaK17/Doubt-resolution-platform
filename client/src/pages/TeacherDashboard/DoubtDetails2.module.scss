@@ -1,0 +1,239 @@
+/* DOUBT DETAILS PREMIUM THEME */
+$primary-gold: #d4af37;
+$light-gold: #f9e090;
+$dark-gold: #a67c00;
+$gold-tint: #f4e5c2;
+$bg-dark: #121212;
+$bg-darker: #0a0a0a;
+/* Keyframes for animations */
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
+  100% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+}
+
+@keyframes metallicShine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.doubtDetails {
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(18, 18, 18, 0.98));
+  color: #f4e5c2;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(212, 175, 55, 0.1);
+  font-family: 'Poppins', 'Outfit', sans-serif;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      linear-gradient(135deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%) -50px 0,
+      linear-gradient(225deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%) -50px 0,
+      linear-gradient(315deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%),
+      linear-gradient(45deg, rgba(212, 175, 55, 0.03) 25%, transparent 25%);
+    background-size: 100px 100px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .backBtn {
+    background: none;
+    border: none;
+    color: #d4af37;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #d4af37;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    color: #d4af37;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #d4af37, #f9e090);
+      border-radius: 3px;
+    }
+  }
+
+  p {
+    font-size: 1.15rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  strong {
+    color: #f9e090;
+    font-weight: 600;
+  }
+
+  .image {
+    margin: 2rem 0;
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+
+  .video {
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(212, 175, 55, 0.2);
+    outline: none;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+  }
+
+  .mediaSection, .emailSection, .solveSection, .mediaPreview {
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem;
+    background: rgba(18, 18, 18, 0.7);
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.05), 0 5px 15px rgba(0, 0, 0, 0.2);
+
+    h3, h4 {
+      color: #f9e090;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      font-size: 1.4rem;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: #d4af37;
+      }
+    }
+  }
+
+  input[type="file"] {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(10, 10, 10, 0.8);
+    color: #f4e5c2;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: border 0.3s ease;
+
+    &:hover {
+      border-color: #f9e090;
+    }
+  }
+
+  .successMsg {
+    margin-top: 1rem;
+    color: #f9e090;
+    font-weight: 500;
+    animation: goldPulse 2s infinite;
+  }
+.audio {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  background: rgba($bg-darker, 0.7);
+  border: 1px solid rgba($primary-gold, 0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+
+  .emailBtn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #d4af37, #f9e090);
+    color: #0a0a0a;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+
+    &:hover {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+      transform: scale(1.02);
+    }
+  }
+
+  .solveBtn {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background: #d4af37;
+    color: #0a0a0a;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+
+    &:hover {
+      background: #f9e090;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
+    }
+
+    &:disabled {
+      background: rgba(212, 175, 55, 0.3);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+}

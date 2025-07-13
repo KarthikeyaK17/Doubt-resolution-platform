@@ -1,0 +1,107 @@
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #121212;
+  font-family: 'Montserrat', sans-serif;
+  padding: 2rem;
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.card {
+  background: rgba(26, 26, 26, 0.9);
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  overflow: visible; // Changed from hidden to visible
+  
+  h2 {
+    color: #f4e5c2;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    pointer-events: auto; // Ensure text is selectable
+  }
+}
+
+.switchTabs {
+  display: flex;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1; // Ensure buttons are clickable
+  
+  button {
+    flex: 1;
+    padding: 0.8rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    z-index: 2; // Higher than container
+    
+    &.active {
+      color: #d4af37;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.input {
+  background: rgba(30, 30, 30, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  color: white;
+  font-size: 0.95rem;
+  width: 100%;
+  
+  &:focus {
+    outline: none;
+    border-color: #d4af37;
+  }
+}
+
+.glowBtn {
+  background: linear-gradient(145deg, #d4af37, #f9e090);
+  color: #121212;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.toggleText {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  
+  &:hover {
+    color: #d4af37;
+  }
+}
+
+// Remove any pseudo-elements that might be blocking interaction

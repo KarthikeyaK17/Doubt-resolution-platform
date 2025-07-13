@@ -1,0 +1,405 @@
+/* SELF-CONTAINED GOLD THEME DASHBOARD */
+// Gold Color Variables
+$primary-gold: #d4af37;
+$light-gold: #f9e090;
+$dark-gold: #a67c00;
+$gold-tint: #f4e5c2;
+$bg-dark: #121212;
+$bg-darker: #0a0a0a;
+
+// Keyframes for animations
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 15px rgba($primary-gold, 0.3); }
+  50% { box-shadow: 0 0 30px rgba($primary-gold, 0.6); }
+  100% { box-shadow: 0 0 15px rgba($primary-gold, 0.3); }
+}
+
+@keyframes metallicShine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0px); }
+}
+
+// Gold particle simulation
+@function goldParticles() {
+  $shadow: ();
+  @for $i from 1 through 100 {
+    $x: random(100) + vw;
+    $y: random(100) + vh;
+    $size: random(3) + px;
+    $shadow: append($shadow, #{$x} #{$y} 0 #{$size} rgba($primary-gold, 0.2), comma);
+  }
+  @return $shadow;
+}
+
+// Base Dashboard Styles
+.dashboard {
+  padding: 3rem;
+  background: linear-gradient(135deg, $bg-darker 0%, $bg-dark 100%);
+  color: $gold-tint;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+
+  // Simulated gold particles with box-shadows
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: goldParticles();
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: $primary-gold;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        $primary-gold 20%, 
+        $light-gold 50%, 
+        $primary-gold 80%, 
+        transparent
+      );
+    }
+  }
+
+  .filters {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+
+    select {
+      padding: 0.8rem 1.2rem;
+      background: rgba($bg-darker, 0.8);
+      border: 1px solid $primary-gold;
+      color: $light-gold;
+      border-radius: 8px;
+      outline: none;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      appearance: none;
+      position: relative;
+
+      // Custom dropdown arrow using CSS
+      &::-ms-expand { display: none; }
+      &::after {
+        content: "▼";
+        color: $primary-gold;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      &:hover {
+        box-shadow: 0 0 15px rgba($primary-gold, 0.4);
+        transform: translateY(-2px);
+      }
+
+      &:focus {
+        border-color: $light-gold;
+        box-shadow: 0 0 20px rgba($primary-gold, 0.6);
+      }
+    }
+  }
+
+  .doubtList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .doubtCard {
+    background: linear-gradient(145deg, rgba($bg-dark, 0.8) 0%, rgba($bg-darker, 0.9) 100%);
+    border: 1px solid rgba($primary-gold, 0.3);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    // Metallic shine effect
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba($light-gold, 0.1) 20%,
+        rgba($light-gold, 0.3) 50%,
+        rgba($light-gold, 0.1) 80%,
+        transparent
+      );
+      transition: 0.7s;
+    }
+
+    &:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 40px rgba($primary-gold, 0.3);
+      border-color: rgba($primary-gold, 0.6);
+
+      &::before {
+        left: 100%;
+      }
+    }
+
+    h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: $light-gold;
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: $primary-gold;
+        transition: width 0.3s ease;
+      }
+    }
+
+    &:hover h4::after {
+      width: 80px;
+    }
+
+    p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    strong {
+      color: $primary-gold;
+      font-weight: 600;
+    }
+
+    .pending {
+      color: lighten(#FFA500, 10%);
+      font-weight: 600;
+      position: relative;
+      display: inline-block;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.5;
+      }
+    }
+
+    .solved {
+      color: lighten(#00FF7F, 5%);
+      font-weight: 600;
+      position: relative;
+      
+      &::before {
+        content: '✓';
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .error {
+    color: lighten(#ff6b6b, 10%);
+    background: rgba(255, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #ff6b6b;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '!';
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+    }
+  }
+}
+
+// Live Chat Components
+.liveChatButton {
+  background: linear-gradient(135deg, $primary-gold 0%, $light-gold 100%);
+  color: $bg-darker;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 15px rgba($primary-gold, 0.4);
+  letter-spacing: 1px;
+  animation: goldPulse 4s infinite;
+
+  // Ripple effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  &:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba($primary-gold, 0.6);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.chatWrapper {
+  position: relative;
+  border: 1px solid rgba($primary-gold, 0.5);
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba($bg-dark, 0.9) 0%, rgba($bg-darker, 0.95) 100%);
+  max-width: 900px;
+  margin: 0 auto;
+  height: 70vh;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba($primary-gold, 0.1);
+  z-index: 10;
+  overflow: hidden;
+
+  // Diamond pattern overlay
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(135deg, rgba($primary-gold, 0.03) 25%, transparent 25%) -50px 0,
+      linear-gradient(225deg, rgba($primary-gold, 0.03) 25%, transparent 25%) -50px 0,
+      linear-gradient(315deg, rgba($primary-gold, 0.03) 25%, transparent 25%),
+      linear-gradient(45deg, rgba($primary-gold, 0.03) 25%, transparent 25%);
+    background-size: 100px 100px;
+    pointer-events: none;
+  }
+}
+
+.closeChatButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba($primary-gold, 0.1);
+  border: 1px solid $primary-gold;
+  color: $primary-gold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: 700;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 11;
+
+  &:hover {
+    background: rgba($primary-gold, 0.3);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 15px rgba($primary-gold, 0.4);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1.5rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .filters {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .doubtList {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .chatWrapper {
+    height: 80vh;
+    padding: 1rem;
+  }
+}

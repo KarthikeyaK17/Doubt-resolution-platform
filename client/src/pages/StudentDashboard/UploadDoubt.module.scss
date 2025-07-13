@@ -1,0 +1,335 @@
+/* UPLOAD DOUBT PREMIUM THEME */
+// Gold Color Variables
+$primary-gold: #d4af37;
+$light-gold: #f9e090;
+$dark-gold: #a67c00;
+$gold-tint: #f4e5c2;
+$bg-dark: #121212;
+$bg-darker: #0a0a0a;
+
+// Keyframes for animations
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 15px rgba($primary-gold, 0.3); }
+  50% { box-shadow: 0 0 30px rgba($primary-gold, 0.6); }
+  100% { box-shadow: 0 0 15px rgba($primary-gold, 0.3); }
+}
+
+@keyframes metallicShine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.uploadContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $bg-darker 0%, $bg-dark 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+
+  // Gold particle simulation
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba($primary-gold, 0.08) 0%, transparent 25%),
+      radial-gradient(circle at 80% 70%, rgba($primary-gold, 0.08) 0%, transparent 25%);
+    z-index: 0;
+    pointer-events: none;
+  }
+}
+
+.glassCard {
+  background: linear-gradient(135deg, rgba($bg-dark, 0.9) 0%, rgba($bg-darker, 0.95) 100%);
+  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 650px;
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba($primary-gold, 0.2);
+  border: 1px solid rgba($primary-gold, 0.3);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  // Diamond pattern overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(135deg, rgba($primary-gold, 0.03) 25%, transparent 25%) -50px 0,
+      linear-gradient(225deg, rgba($primary-gold, 0.03) 25%, transparent 25%) -50px 0,
+      linear-gradient(315deg, rgba($primary-gold, 0.03) 25%, transparent 25%),
+      linear-gradient(45deg, rgba($primary-gold, 0.03) 25%, transparent 25%);
+    background-size: 100px 100px;
+    pointer-events: none;
+  }
+
+  h2 {
+    color: $light-gold;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, $primary-gold, transparent);
+      border-radius: 3px;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.subjectInput,
+.textarea {
+  background: rgba($bg-darker, 0.7);
+  border: 1px solid rgba($primary-gold, 0.3);
+  border-radius: 12px;
+  padding: 1.2rem;
+  color: $gold-tint;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-gold;
+    box-shadow: 0 0 0 3px rgba($primary-gold, 0.2);
+  }
+
+  &::placeholder {
+    color: rgba($gold-tint, 0.6);
+  }
+}
+
+.subjectInput {
+  font-weight: 500;
+}
+
+.textarea {
+  min-height: 180px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.inputFile {
+  display: none;
+}
+
+.uploadLabel {
+  display: block;
+  background: rgba($bg-darker, 0.7);
+  border: 2px dashed rgba($primary-gold, 0.4);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  color: rgba($gold-tint, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '📁';
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    border-color: $primary-gold;
+    color: $light-gold;
+    background: rgba($bg-darker, 0.8);
+    transform: translateY(-2px);
+  }
+}
+
+.voiceBtn {
+  background: rgba($bg-darker, 0.7);
+  border: 1px solid rgba($primary-gold, 0.4);
+  border-radius: 12px;
+  padding: 1rem;
+  color: $light-gold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  &::before {
+    content: '🎙️';
+    font-size: 1.2rem;
+  }
+
+  &:hover {
+    background: rgba($primary-gold, 0.1);
+    border-color: $primary-gold;
+    box-shadow: 0 0 15px rgba($primary-gold, 0.3);
+  }
+}
+
+.voiceControls {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.recordStart,
+.recordStop {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.recordStart {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.2) 0%, rgba(76, 175, 80, 0.3) 100%);
+  color: #4CAF50;
+
+  &::before {
+    content: '⏺️';
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.3) 0%, rgba(76, 175, 80, 0.4) 100%);
+    transform: translateY(-2px);
+  }
+}
+
+.recordStop {
+  background: linear-gradient(135deg, rgba(244, 67, 54, 0.2) 0%, rgba(244, 67, 54, 0.3) 100%);
+  color: #F44336;
+
+  &::before {
+    content: '⏹️';
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.3) 0%, rgba(244, 67, 54, 0.4) 100%);
+    transform: translateY(-2px);
+  }
+}
+
+.audioPlayer {
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 12px;
+  background: rgba($bg-darker, 0.7);
+  border: 1px solid rgba($primary-gold, 0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, $primary-gold 0%, $light-gold 50%, $primary-gold 100%);
+  color: $bg-darker;
+  border: none;
+  border-radius: 12px;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba($primary-gold, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: goldPulse 4s infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba($primary-gold, 0.6);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:disabled {
+    background: #444;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+    animation: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .uploadContainer {
+    padding: 1.5rem;
+  }
+
+  .glassCard {
+    padding: 2rem;
+    
+    h2 {
+      font-size: 1.8rem;
+    }
+  }
+
+  .voiceControls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .recordStart,
+  .recordStop {
+    width: 100%;
+    justify-content: center;
+  }
+}
